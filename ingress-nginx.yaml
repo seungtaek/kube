@@ -11,11 +11,11 @@ spec:
       paths:
       - path: /foos1
         backend:
-          serviceName: s1
+          serviceName: ngnix
           servicePort: 80
       - path: /bars2
         backend:
-          serviceName: s2
+          serviceName: phpmyadmin-service
           servicePort: 80
   - host: bar.foo.com
     http:

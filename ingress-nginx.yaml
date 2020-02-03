@@ -11,9 +11,9 @@ spec:
       paths:
       - path: /foos1
         backend:
-          serviceName: ngnix
+          serviceName: nginx
           servicePort: 80
-      - path: /bars2
+      - path: /
         backend:
           serviceName: phpmyadmin-service
           servicePort: 80

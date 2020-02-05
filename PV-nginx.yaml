@@ -1,14 +1,15 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: local-volume
+  name: local-volume-nginx
   labels:
-    type: local
+    app: nginx
 spec:
   capacity:
     storage: 2Gi
   accessModes:
   - ReadWriteOnce
   hostPath:
-    path: /tmp/test-lv
+    path: /tmp/nginx
   persistentVolumeReclaimPolicy: Recycle
+  storageClassName: nginx

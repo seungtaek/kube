@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: phpmyadmin
-          image: 192.168.10.150:31111/phpmyadmin:latest #This is pfsense virtual IP for haproxy 
+          image: 192.168.10.150:31111/phpmyadmin:1.0 #This is pfsense virtual IP for haproxy 
           ports:
             - containerPort: 80
           env:

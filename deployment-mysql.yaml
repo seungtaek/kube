@@ -29,9 +29,26 @@ spec:
         - name: MYSQL_ROOT_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: mysql-pass
-              key: password.txt
+              name: mysql-secret
+              key: password
       volumes:
       - name: mysql-local-storage
         persistentVolumeClaim:
           claimName: mysql-lv-claim
+---
+  apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    name: mysql-lv-claim
+    labels:
+      app: mysql
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 2Gi
+    storageClassName: mysql
+    #selector:
+    #    matchLabels:
+    #        app: mysql

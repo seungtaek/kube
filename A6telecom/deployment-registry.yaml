@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: registry-deployment
+  labels:
+    app: registry-deployment
+  # annotations:
+    # kubernetes.io/change-cause: version 1.10.1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: registry-deployment
+  template:
+    metadata:
+      labels:
+        app: registry-deployment
+    spec:
+      containers:
+      - name: registry-deployment
+        image: registry
+        ports:
+        - containerPort: 5000
+        volumeMounts:
+            - name: registry-local-storage
+              mountPath: /var/lib/registry
+      volumes:
+      - name: registry-local-storage
+        persistentVolumeClaim:
+           claimName: mysql-lv-claim

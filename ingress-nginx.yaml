@@ -9,14 +9,18 @@ spec:
   - host: foo.bar.com
     http:
       paths:
-      - path: /foos1
-        backend:
-          serviceName: nginx
-          servicePort: 80
-      - path: /
+      - path: /phpmyadmin
         backend:
           serviceName: phpmyadmin-service
           servicePort: 80
+      - path: /gitlab
+        backend:
+          serviceName: gitlab-service
+          servicePort: 80
+      - path: /
+        backend:
+          serviceName: nginx
+          servicePort: 80  
   - host: bar.foo.com
     http:
       paths:

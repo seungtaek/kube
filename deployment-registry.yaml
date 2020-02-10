@@ -27,4 +27,18 @@ spec:
       volumes:
       - name: registry-local-storage
         persistentVolumeClaim:
-           claimName: mysql-lv-claim
+           claimName: registry-lv-claim
+---
+ apiVersion: v1
+ kind: PersistentVolumeClaim
+ metadata:
+   name: registry-lv-claim
+   labels:
+     app: registry
+ spec:
+   accessModes:
+   - ReadWriteOnce
+   resources:
+     requests:
+       storage: 100Mi
+   storageClassName: registry 

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: local-volume-gitlab
+  labels:
+    app: gitlab
+spec:
+  capacity:
+    storage: 2Gi
+  accessModes:
+  - ReadWriteOnce
+  hostPath:
+    path: /tmp/gitlab
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: gitlab

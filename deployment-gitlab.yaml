@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gitlab
+  labels:
+    app: gitlab
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gitlab
+  template:
+    metadata:
+      labels:
+        app: gitlab
+    spec:
+      containers:
+      - name: gitlab
+        image: gitlab/gitlab-ce
+        ports:
+        - containerPort: 80
+        volumeMounts:
+          - name: gitlab-local-storage
+            mountPath: /var/opt/gitlab
+      volumes:
+      - name: gitlab-local-storage
+        persistentVolumeClaim:
+          claimName: gitlab-lv-claim
+---
+  apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    name: gitlab-lv-claim
+    labels:
+      app: gitlab
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 500Mi
+    storageClassName: gitlab 
+  
+      
+      
